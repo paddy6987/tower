@@ -1,5 +1,5 @@
 ---
-- hosts: hostB
+- hosts: new-inventory
   tasks:
       - name: Create file
         file:
