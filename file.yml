@@ -3,5 +3,5 @@
   tasks:
       - name: Create file
         file:
-            path: /tmp/yallo
+            path: /tmp/hello
             state: touch
