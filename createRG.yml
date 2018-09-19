@@ -3,6 +3,6 @@
   tasks:
     - name: Create resource group
       azure_rm_resourcegroup:
-       name: myResourceGroup
-       location: eastus
-       state: present
+         name: myResourceGroup
+         location: eastus
+
