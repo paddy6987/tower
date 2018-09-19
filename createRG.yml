@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   tasks:
-    - name: Create a resource group
-      azure_rm_resourcegroup:
-        name: Testing
-        location: westus
+    - name: Create resource group
+    azure_rm_resourcegroup:
+      name: myResourceGroup
+      location: eastus
