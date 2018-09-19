@@ -1,4 +1,4 @@
 - name: Delete a resource group
   azure_rm_resourcegroup:
-    name: Testing
+    name: new
     state: absent
