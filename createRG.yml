@@ -1,8 +1,8 @@
 ---
 - hosts: localhost
   tasks:
-    - name: Create resource group
-      azure_rm_resourcegroup:
-         name: myResourceGroup
-         location: eastus
-
+    - name: Create public IP address
+     azure_rm_publicipaddress:
+      resource_group: new
+      allocation_method: Static
+      name: myPublicIP
