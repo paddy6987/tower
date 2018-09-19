@@ -3,6 +3,6 @@
   tasks:
     - name: Create a resource group
       azure_rm_resourcegroup:
-      name: Testing
-      location: westus
+        name: Testing
+        location: westus
       
