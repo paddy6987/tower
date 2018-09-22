@@ -1,6 +1,3 @@
----
-- hosts: localhost
-  tasks:
     - name: Create public IP address
          azure_rm_publicipaddress:
                    resource_group: new
