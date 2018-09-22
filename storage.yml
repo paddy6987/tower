@@ -1,5 +1,5 @@
 ---
-- hosts:local
+- hosts:localhost
    - name: Create storage container
       azure_rm_storageblob:
        resource_group: example
