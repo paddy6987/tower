@@ -1,0 +1,10 @@
+
+---
+- hosts: localhost
+  tasks:
+   - name: Create storage container
+      azure_rm_storageblob:
+       resource_group: example
+       storage_account_name: examplestorage01
+       container: cookbook
+       state: present
