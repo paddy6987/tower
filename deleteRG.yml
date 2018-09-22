@@ -2,6 +2,6 @@
 - hosts: localhost
   tasks:
     - name: Delete a resource group
-       azure_rm_resourcegroup:
+      azure_rm_resourcegroup:
        name: new
        state: absent
