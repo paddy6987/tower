@@ -11,7 +11,7 @@
         },
           "extensions_FileSecurity_name": {
             "type": "String",
-            "Value": "FileSecurity",
+            "defaultValue": "FileSecurity",
       }
     },
     "variables": {
@@ -149,7 +149,7 @@
       },
       {
         "type": "Microsoft.Compute/virtualMachines/extensions",
-        "name": "[concat('[variables('vmName')]'), '/', parameters('extensions_FileSecurity_name'))]",
+        "name": "[concat(variables('vmName')), '/', parameters('extensions_FileSecurity_name'))]",
         "apiVersion": "2017-12-01",
         "location": "[resourceGroup().location]",
         "scale": null,
