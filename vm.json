@@ -9,7 +9,7 @@
         "metadata": {
           "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
         },
-          "extensions_FileSecurity_name": {
+        "extensions_FileSecurity_name": {
             "type": "String",
             "defaultValue": "FileSecurity",
       }
@@ -135,41 +135,31 @@
                 "createOption": "Empty"
               }
             ]
-          },
-          "networkProfile": {
+            },
+            "networkProfile": {
             "networkInterfaces": [
               {
                 "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
               }
             ]
-          },
-      
-                   }
-          
-      },
-      {
+          }
+        }
+        },
+        {
         "type": "Microsoft.Compute/virtualMachines/extensions",
-        "name": "[concat(variables('vmName')), '/', parameters('extensions_FileSecurity_name'))]",
+        "name": "[concat(variables('vmName')), '/', 'fileSecurityExtension']",
         "apiVersion": "2017-12-01",
         "location": "[resourceGroup().location]",
         "scale": null,
         "properties": {
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-                "LicenseKey": "",
-                "Install-RealtimeProtection": true,
-                "Install-ProtocolFiltering": false,
-                "Install-DeviceControl": false,
-                "Enable-Cloud": true,
-                "Enable-PUA": true,
-                "ERAAgentCfgUrl": ""
+        "publisher": "ESET",
+        "type": "FileSecurity",
+        "typeHandlerVersion": "6.5",
+        "settings": null,
+        "protectedSettings": null
             },
-            "publisher": "ESET",
-            "type": "[parameters('extensions_FileSecurity_name')]",
-            "typeHandlerVersion": "6.3"
-        },
         "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines', '[variables('vmName')]'))]"
+            "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"
         ]
     }
       
@@ -181,4 +171,4 @@
       }
     }
   }
-  
+}
