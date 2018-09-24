@@ -9,4 +9,10 @@
       state: present
       resource_group_name: dev-ops-cle
       template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
-      parameters_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.parameters.json'
+      parameters:
+        adminUsername:
+        value: mytestacct1
+        adminPassword:
+        value: mytestpass1
+        dnsNameForPublicIP:
+        value: GEN-IP
