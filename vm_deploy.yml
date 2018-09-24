@@ -5,7 +5,7 @@
   vars:
     # Variables 'resgrp' and 'location' need to be provided at command line with arg --extra-vars or fom parameter.
     templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm.json' 
-    #paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/VM_parameter.json'
+    paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/VM_parameter.json'
    
   tasks:
   - name: Deploy ARM template
@@ -15,4 +15,4 @@
         # location seems to be not optional
         location: '{{ location }}'
         template_link: '{{ templateLink }}'
-       # parameters_link: '{{ paramsLink }}'
+        parameters_link: '{{ paramsLink }}'
