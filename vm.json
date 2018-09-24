@@ -148,7 +148,6 @@
           
       },
       {
-        "apiVersion": "2016-03-30",
         "type": "Microsoft.Compute/virtualMachines/extensions",
         "name": "[concat('[variables('vmName')]'), '/', parameters('extensions_FileSecurity_name'))]",
         "apiVersion": "2017-12-01",
