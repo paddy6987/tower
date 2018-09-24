@@ -8,10 +8,6 @@
     azure_rm_deployment:
       state: present
       resource_group_name: dev-ops-cle
-      template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
-      parameters:
-        adminUsername:
-        value: mytestacct1
-        adminPassword:
-        value: mytestpass1
+      template_link: 'https://raw.githubusercontent.com/paddy6987/tower/master/rhel.json'
+      
         
