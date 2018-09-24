@@ -8,7 +8,10 @@
         "defaultValue": "2016-Datacenter",
         "metadata": {
           "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
-        }
+        },
+          "extensions_FileSecurity_name": {
+            "type": "String",
+            "Value": "FileSecurity",
       }
     },
     "variables": {
@@ -145,7 +148,7 @@
           
       },
       {
-        "comments": "Generalized from resource:",
+        "apiVersion": "2016-03-30",
         "type": "Microsoft.Compute/virtualMachines/extensions",
         "name": "[concat('[variables('vmName')]'), '/', parameters('extensions_FileSecurity_name'))]",
         "apiVersion": "2017-12-01",
