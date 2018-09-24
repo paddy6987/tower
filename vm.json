@@ -140,6 +140,32 @@
             }
           ]
         },
+       {
+        "comments": "Generalized from resource:",
+        "type": "Microsoft.Compute/virtualMachines/extensions",
+        "name": "[concat('[variables('vmName')]'), '/', parameters('extensions_FileSecurity_name'))]",
+        "apiVersion": "2017-12-01",
+        "location": "[resourceGroup().location]",
+        "scale": null,
+        "properties": {
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+                "LicenseKey": "",
+                "Install-RealtimeProtection": true,
+                "Install-ProtocolFiltering": false,
+                "Install-DeviceControl": false,
+                "Enable-Cloud": true,
+                "Enable-PUA": true,
+                "ERAAgentCfgUrl": ""
+            },
+            "publisher": "ESET",
+            "type": "[parameters('extensions_FileSecurity_name')]",
+            "typeHandlerVersion": "6.3"
+        },
+        "dependsOn": [
+            "[resourceId('Microsoft.Compute/virtualMachines', '[variables('vmName')]'))]"
+        ]
+    }
                  }
         
     }
