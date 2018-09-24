@@ -172,7 +172,7 @@
       "type": "Microsoft.Compute/virtualMachines/extensions",
         "name": "[concat('WinVM','/', 'fileSecurityExtension')]",
         "apiVersion": "2015-05-01-preview",
-        "location": "[parameters('location')]",
+        "location": "[resourceGroup().location]",
         "dependsOn": [
           "[concat('Microsoft.Compute/virtualMachines/', 'WinVM')]"
         ],
