@@ -4,7 +4,7 @@
   gather_facts: False
   vars:
     
-    resgrp: "pradnesh_rg"
+    resourceGroup: "Globant_rg"
     location: "eastus"
     templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm.json' 
     #paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
