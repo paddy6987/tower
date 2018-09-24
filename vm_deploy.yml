@@ -4,8 +4,6 @@
   gather_facts: False
   vars:
     
-    resourceGroup: "Globant_rg"
-    location: "eastus"
     templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm.json' 
     #paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
    
@@ -14,8 +12,8 @@
   - name: Deploy ARM template
     azure_rm_deployment:
         state: present
-        resource_group_name: '{{ resourceGroup }}'
-        location: '{{ location }}'
+        resource_group_name: "Globant_rg"
+        location: "eastus"
         template_link: '{{ templateLink }}'
        # parameters_link: '{{ paramsLink }}'
         
