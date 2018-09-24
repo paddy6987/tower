@@ -3,7 +3,7 @@
   connection: local
   gather_facts: False
       
-    templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm.json' 
+    #templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm.json' 
     #paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
    
    
