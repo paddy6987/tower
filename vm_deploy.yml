@@ -11,8 +11,9 @@
   - name: Deploy ARM template
     azure_rm_deployment:
         state: present
+        parameters_link: '{{ paramsLink }}'
         resource_group_name: '{{ resgrp }}'
         # location seems to be not optional
         location: '{{ location }}'
         template_link: '{{ templateLink }}'
-        parameters_link: '{{ paramsLink }}'
+        
