@@ -2,8 +2,7 @@
   hosts: localhost
   connection: local
   gather_facts: False
-  vars:
-    
+      
     templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm.json' 
     #paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
    
@@ -14,6 +13,6 @@
         state: present
         resource_group_name: "Globant_rg"
         location: "eastus"
-        template_link: '{{ templateLink }}'
+        template_link: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm.json'
        # parameters_link: '{{ paramsLink }}'
         
