@@ -14,5 +14,4 @@
         value: mytestacct1
         adminPassword:
         value: mytestpass1
-        dnsNameForPublicIP:
-        value: GEN-IP
+        
