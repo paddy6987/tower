@@ -7,7 +7,7 @@
     resgrp: "pradnesh_rg"
     location: "eastus"
     templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm.json' 
-    paramsLink:'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
+    paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
    
    
   tasks:
