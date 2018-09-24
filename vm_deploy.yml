@@ -14,7 +14,7 @@
   - name: Deploy ARM template
     azure_rm_deployment:
         state: present
-        resource_group_name: '{{ resgrp }}'
+        resource_group_name: '{{ resourceGroup }}'
         location: '{{ location }}'
         template_link: '{{ templateLink }}'
        # parameters_link: '{{ paramsLink }}'
