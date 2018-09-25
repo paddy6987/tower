@@ -5,7 +5,7 @@
   vars:
     
     resgrp: "Globant_rg"
-    location: "eastus"
+    #location: "eastus"
     templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/new_vm.json' 
     #paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
    
@@ -15,6 +15,6 @@
     azure_rm_deployment:
         state: present
         resource_group_name: '{{ resgrp }}'
-        location: '{{ location }}'
+        #location: '{{ location }}'
         template_link: '{{ templateLink }}'
 # parameters_link: '{{ paramsLink }}'
