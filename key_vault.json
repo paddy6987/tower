@@ -51,7 +51,7 @@
             "properties": {
                 "attributes": {
                     "enabled": true,
-                    "value": "Admin123"
+                    "value": "Admin123",
                     "nbf": 1537411263,
                     "exp": 1600569523
                 }
