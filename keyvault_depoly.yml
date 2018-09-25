@@ -1,0 +1,19 @@
+- name: CREATE ARM Deployment PLAYBOOK
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  vars:
+    
+    resgrp: "Globant_vault_rg"
+    location: "eastus"
+    templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/new_vm.json' 
+    #paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
+   
+   
+  tasks:
+  - name: Deploy ARM template
+    azure_rm_deployment:
+        state: present
+        resource_group_name: '{{ resgrp }}'
+        location: '{{ location }}'
+        template_link: '{{ templateLink }}'
