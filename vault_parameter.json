@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "keyVaultName": {
-            "value": "MpradneshVault"
+            "value": "pradneshVault"
         },
         "tenantId": {
             "value": "1d023485-4e7b-481c-84b5-177d5a4d5729"
