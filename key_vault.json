@@ -45,7 +45,7 @@
             },
         "location": {
                 "type": "string",
-                "defaultValue": "eastus",
+                "defaultValue": "westus",
                 "metadata": {
                   "description": "Location for all resources."
                 }
