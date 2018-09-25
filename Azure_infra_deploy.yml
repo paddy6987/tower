@@ -19,7 +19,7 @@
         location: '{{ location }}'
         template_link: '{{ templateLink1 }}'
         
-   tasks:
+  tasks:
   - name: Deploy ARM template
     azure_rm_deployment:
         state: present
