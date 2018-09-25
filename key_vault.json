@@ -31,8 +31,26 @@
                         "tenantId": "1d023485-4e7b-481c-84b5-177d5a4d5729",
                         "objectId": "0fc42cb1-71a9-40b7-833d-367dcb38055f",
                         "permissions": {
-                            "keys": ["all"],
-                            "secrets": ["all"]                           
+                            "keys": [
+                                "Get",
+                                "List",
+                                "Update",
+                                "Create",
+                                "Import",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore"
+                            ],
+                            "secrets": [
+                                "Get",
+                                "List",
+                                "Set",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore"
+                            ]                           
                         }
                     }
                 ],
