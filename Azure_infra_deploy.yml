@@ -19,8 +19,7 @@
         location: '{{ location }}'
         template_link: '{{ templateLink1 }}'
         
-  tasks:
-  - name: Deploy ARM template
+  - name: Deploy vault ARM template
     azure_rm_deployment:
         state: present
         resource_group_name: '{{ resource_group_name }}'
