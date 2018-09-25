@@ -1,19 +1,15 @@
-- name: CREATE KEY_VAULT ARM Deployment PLAYBOOK
+- name: CREATE ARM Deployment PLAYBOOK
   hosts: localhost
   connection: local
   gather_facts: False
   vars:
-    
-    resourceGroup: "Globant_vault_rg"
-    location: "eastus"
-    templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/key_vault.json' 
-    #paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
-   
-   
-  tasks:
-  - name: Deploy ARM template
-    azure_rm_deployment:
-        state: present
-        resource_group_name: '{{ resourceGroup }}'
-        location: '{{ location }}'
-        template_link: '{{ templateLink }}'
+     resourceGroup: "Globant_vault_rg"
+     location: "eastus"
+	   templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/key_vault.json' 
+	 tasks:
+     - name: Create instance of Key Vault
+       azure_rm_keyvault:
+         resource_group: '{{ resourceGroup }}'
+		     location: '{{ location }}'
+         vault_name: samplekeyvault
+         enabled_for_deployment: yes
