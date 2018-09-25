@@ -16,5 +16,5 @@
         location: '{{ location }}'
         template_link: '{{ templateLink }}'
         "parametersLink": {
-          "uri":"https://raw.githubusercontent.com/nitinpokharna/ansible/master/nested/azuredeploy.parameters.json",
+          "uri":"https://raw.githubusercontent.com/paddy6987/tower/master/vault_parameter.json",
           "contentVersion":"1.0.0.0" }
