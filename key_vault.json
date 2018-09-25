@@ -49,9 +49,9 @@
             "location": "eastus",
             "scale": null,
             "properties": {
+                "value": "Admin123",
                 "attributes": {
                     "enabled": true,
-                    "value": "Admin123",
                     "nbf": 1537411263,
                     "exp": 1600569523
                 }
