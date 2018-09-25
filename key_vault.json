@@ -22,7 +22,7 @@
                 }
                     ],
                     "metadata": {
-                "description": "Access policies object {"tenantId":"","objectId":"","permissions":{"keys":[""],"secrets":[""]}}"
+                "description": "Access policies object "
             }
         },
         "enableVaultForVolumeEncryption": {
@@ -41,7 +41,7 @@
                 }
             ],
             "metadata": {
-                "description": "all secrets {"secretName":"","secretValue":""}"
+                "description": "all secrets "
             }
         },
     "resources": [
