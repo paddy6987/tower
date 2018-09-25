@@ -48,7 +48,7 @@
             {
                 "type": "Microsoft.KeyVault/vaults",
                 "name": "[parameters('keyVaultName')]",
-                "location": "[resourceGroup().location]",
+                "location": "eastus",
                 "accessPolicies": "[parameters('accessPolicies')]",
                 
             },
