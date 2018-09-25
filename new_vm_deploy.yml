@@ -4,7 +4,7 @@
   gather_facts: False
   vars:
     
-    resgrp: "Globant_rg"
+    resgrp: "Globant_demo_rg"
     location: "eastus"
     templateLink1: 'https://raw.githubusercontent.com/paddy6987/tower/master/new_vm.json' 
     templateLink2: 'https://raw.githubusercontent.com/paddy6987/tower/master/key_vault.json'
