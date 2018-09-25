@@ -1,4 +1,4 @@
-- name: CREATE ARM Deployment PLAYBOOK
+- name: CREATE KEY_VAULT ARM Deployment PLAYBOOK
   hosts: localhost
   connection: local
   gather_facts: False
@@ -6,7 +6,7 @@
     
     resgrp: "Globant_vault_rg"
     location: "eastus"
-    templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/new_vm.json' 
+    templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/key_vault.json' 
     #paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
    
    
