@@ -5,6 +5,7 @@
   vars:
     
     resgrp: "Globant_demo_rg"
+    resource_group_name: "Globant_demo_rg"
     location: "eastus"
     templateLink1: 'https://raw.githubusercontent.com/paddy6987/tower/master/new_vm.json' 
     templateLink2: 'https://raw.githubusercontent.com/paddy6987/tower/master/key_vault.json'
@@ -18,5 +19,11 @@
         resource_group_name: '{{ resgrp }}'
         location: '{{ location }}'
         template_link: '{{ templateLink1 }}'
+        # parameters_link: '{{ paramsLink }}'
+
+  - name: Deploy ARM template
+    azure_rm_deployment:
+        state: present
+        resource_group_name: '{{ resourceGroup }}'
+        location: '{{ location }}'
         template_link: '{{ templateLink2 }}'
-# parameters_link: '{{ paramsLink }}'
