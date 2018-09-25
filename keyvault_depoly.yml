@@ -4,7 +4,7 @@
   gather_facts: False
   vars:
     
-    resgrp: "Globant_vault_rg"
+    resourceGroup: "Globant_vault_rg"
     location: "eastus"
     templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/key_vault.json' 
     #paramsLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/vm_parameter.json'
@@ -14,6 +14,6 @@
   - name: Deploy ARM template
     azure_rm_deployment:
         state: present
-        resource_group_name: '{{ resgrp }}'
+        resource_group_name: '{{ resourceGroup }}'
         location: '{{ location }}'
         template_link: '{{ templateLink }}'
