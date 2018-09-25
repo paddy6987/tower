@@ -42,20 +42,13 @@
             ],
             "metadata": {
                 "description": "all secrets "
-            },
-        "location": {
-                "type": "string",
-                "defaultValue": "[resourceGroup().location]",
-                "metadata": {
-                  "description": "Location for all resources."
-                }
             }
-        },
+     },
     "resources": [
             {
                 "type": "Microsoft.KeyVault/vaults",
                 "name": "[parameters('keyVaultName')]",
-                "location": "[parameters('location')]",
+                "location": "[resourceGroup().location]",
                 "accessPolicies": "[parameters('accessPolicies')]",
                 
             },
