@@ -4,7 +4,7 @@
   gather_facts: False
   vars:
      resourceGroup: "Globant_vault_rg"
-     location: "eastus"
+     #location: "eastus"
      templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/key_vault.json' 
    
   tasks:
@@ -12,5 +12,5 @@
     azure_rm_deployment:
         state: present
         resource_group_name: '{{ resourceGroup }}'
-        location: '{{ location }}'
+        #location: '{{ location }}'
         template_link: '{{ templateLink }}'
