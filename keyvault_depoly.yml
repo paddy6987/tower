@@ -6,6 +6,7 @@
      resourceGroup: "Globant_vault_rg"
      location: "eastus"
      templateLink: 'https://raw.githubusercontent.com/paddy6987/tower/master/key_vault.json' 
+     
    
   tasks:
   - name: Deploy ARM template
@@ -14,3 +15,6 @@
         resource_group_name: '{{ resourceGroup }}'
         location: '{{ location }}'
         template_link: '{{ templateLink }}'
+        "parametersLink": {
+          "uri":"https://raw.githubusercontent.com/nitinpokharna/ansible/master/nested/azuredeploy.parameters.json",
+          "contentVersion":"1.0.0.0" }
