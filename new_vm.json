@@ -216,7 +216,7 @@
             "ModulesUrl": "[parameters('modulesUrl')]",
             "ConfigurationFunction": "[parameters('configurationFunction')]",
             "Properties": {
-              "MachineName": "WinVM"
+            "MachineName": "WinVM"
             }
           },
           "protectedSettings": null
