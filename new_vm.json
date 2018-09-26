@@ -44,7 +44,7 @@
       "publicIPAddressName": "myPublicIP",
       "vmName": "WinVM",
       "virtualNetworkName": "NewVNET",
-      "vmExtensionName": "dscExtension"
+      "vmExtensionName": "dscExtension",
       "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
     },
     "resources": [
