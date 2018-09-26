@@ -17,6 +17,11 @@
           "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
         }
       }
+      "modulesUrl": {
+      "type": "string",
+      "metadata": {
+        "description": "URL for the DSC configuration module. NOTE: Can be a Github url(raw) to the zip file"
+      }
     },
     "variables": {
       "dnsLabelPrefix": "fsfsdxsds",
