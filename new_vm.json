@@ -201,7 +201,7 @@
       },
       {
         "type": "Microsoft.Compute/virtualMachines/extensions",
-        "name": "[concat(variables('vmName'),'/', variables('vmExtensionName'))]",
+        "name": "[concat('WinVM','/', 'dscExtension'))]",
         "apiVersion": "2015-05-01-preview",
         "location": "[resourceGroup().location]",
         "dependsOn": [
