@@ -4,7 +4,7 @@
   gather_facts: False
   vars:
     
-    #resource_group_name: "Globant_demo_rg"
+    resource_group_name: "Globant_demo_rg"
     location: "eastus"
     templateLink1: 'https://raw.githubusercontent.com/paddy6987/azure-quickstart-templates/master/dsc-extension-iis-server-windows-vm/azuredeploy.json' 
     #templateLink2: 'https://raw.githubusercontent.com/paddy6987/tower/master/key_vault.json'
@@ -15,7 +15,7 @@
   - name: Deploy ARM template
     azure_rm_deployment:
         state: present
-     #   resource_group_name: '{{ resource_group_name }}'
+        resource_group_name: '{{ resource_group_name }}'
         location: '{{ location }}'
         template_link: '{{ templateLink1 }}'
         parameters_link: '{{ paramsLink }}'
