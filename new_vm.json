@@ -205,7 +205,7 @@
         "apiVersion": "2015-05-01-preview",
         "location": "[resourceGroup().location]",
         "dependsOn": [
-          "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+          "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
         ],
         "properties": {
           "publisher": "Microsoft.Powershell",
