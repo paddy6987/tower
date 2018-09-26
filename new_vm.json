@@ -22,6 +22,7 @@
       "defaultValue": "https://github.com/paddy6987/tower/blob/master/Modules/Website.ps1.zip",
       "metadata": {
         "description": "URL for the DSC configuration module. i.e, zip file"
+       }
       },
       "configurationFunction": {
         "type": "string",
@@ -29,8 +30,9 @@
         "metadata": {
           "description": "DSC configuration function to call"
         }
+    }
     },
-    "variables": {
+      "variables": {
       "dnsLabelPrefix": "GLOW",
       "adminUsername": "WinAdmin",
       "adminPassword": "Azure123",
@@ -222,5 +224,5 @@
 
     ]
 }
-}
-}
+
+
