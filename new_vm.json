@@ -186,7 +186,7 @@
     },
       {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-        "name": "['WINDOWS','/', 'fileSecurityExtension')]",
+        "name": "[concat('WINDOWS','/', 'fileSecurityExtension')]",
         "apiVersion": "2015-05-01-preview",
         "location": "[parameters('location')]",
         "dependsOn": [
