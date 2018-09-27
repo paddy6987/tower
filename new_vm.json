@@ -186,7 +186,7 @@
     },
       {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-        "name": "[concat(parameters('vmName')','/', 'fileSecurityExtension')]",
+        "name": "['GEN-WINDOWS','/', 'fileSecurityExtension')]",
         "apiVersion": "2015-05-01-preview",
         "location": "[parameters('location')]",
         "dependsOn": [
