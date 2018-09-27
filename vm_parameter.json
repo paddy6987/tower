@@ -25,6 +25,9 @@
         },
         "configurationFunction": {
             "value": "ContosoWebsite.ps1\\ContosoWebsite"
+        },
+        "configurationFile": {
+            "value": "Createfile.ps1\\Createfile"
         }
     }
 }
