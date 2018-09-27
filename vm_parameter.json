@@ -6,7 +6,7 @@
             "value": "Standard_LRS"
         },
         "vmName": {
-            "value": "GEN-WINDOWS"
+            "value": "WINDOWS"
         },
         "vmSize": {
             "value": "Standard_A2"
