@@ -4,7 +4,7 @@
   gather_facts: False
   vars:
     
-    resource_group_name: "Globant_demo_rg"
+    resource_group_name: "Globant_rg"
     location: "central india"
     templateLink1: 'https://raw.githubusercontent.com/paddy6987/tower/master/new_vm.json' 
     #templateLink2: 'https://raw.githubusercontent.com/paddy6987/tower/master/key_vault.json'
