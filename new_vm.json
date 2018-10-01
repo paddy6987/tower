@@ -62,14 +62,7 @@
   "metadata": {
     "description": "DSC configuration function to call"
   },
-  "configurationFile": {
-    "type": "string",
-    "defaultValue": "Createfile.ps1\\Createfile",
-    "metadata": {
-      "description": "DSC configuration function to call"
-    }
-},
-"location": {
+ "location": {
   "type": "string",
   "defaultValue": "[resourceGroup().location]",
   "metadata": {
