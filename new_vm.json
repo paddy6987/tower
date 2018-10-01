@@ -83,7 +83,7 @@
     "nicName": "dscNIC",
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
-    "vmExtensionName": "dscExtension"
+    "vmExtensionName": "dscExt"
   },
   "resources": [
     {
