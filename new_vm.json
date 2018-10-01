@@ -61,6 +61,7 @@
   "defaultValue": "ContosoWebsite.ps1\\ContosoWebsite",
   "metadata": {
     "description": "DSC configuration function to call"
+  }
   },
  "location": {
   "type": "string",
