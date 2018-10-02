@@ -211,7 +211,7 @@
     {
     "type": "Microsoft.Compute/virtualMachines/extensions",
     "name": "[concat(parameters('vmName'),'/', variables('vmExtName'))]",
-    "apiVersion": "2015-06-15",
+    "apiVersion": "2015-05-01-preview",
     "location": "[parameters('location')]",
     "dependsOn": [
         "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
@@ -224,11 +224,11 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
             "fileUris": [
-                "https://raw.githubusercontent.com/paddy6987/tower/master/Createfile.ps1"
+                "https://cloudshellstoragecent867.blob.core.windows.net/new/Createfile.ps1"
             ]
         },
         "protectedSettings": {
-            "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File Createfile.ps1"
+            "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File Createfile.ps1"
         }
     }
 }
