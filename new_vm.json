@@ -214,7 +214,8 @@
     "name": "[concat(parameters('vmName'),'/', variables('vmExtName'))]",
     "location": "[parameters('location')]",
     "dependsOn": [
-        'Microsoft.Compute/virtualMachines/extensions/dscExtension'
+        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
+        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'),'/', 'dscExtension')]"
             ],
     "properties": {
         "publisher": "Microsoft.Compute",
