@@ -214,7 +214,7 @@
     "name": "[concat(parameters('vmName'),'/', variables('vmExtName'))]",
     "location": "[parameters('location')]",
     "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+        "[concat('Microsoft.Compute/virtualMachines/', variables('vmExtensionName'))]"
       ],
     "properties": {
         "publisher": "Microsoft.Compute",
