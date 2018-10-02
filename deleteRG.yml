@@ -1,8 +1,0 @@
----
-- hosts: localhost
-  connection: local
-  tasks:
-    - name: Delete a resource group
-      azure_rm_resourcegroup:
-       name: new
-       state: absent
