@@ -83,8 +83,8 @@
     "nicName": "dscNIC",
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
-    "vmExtensionName": "dscExt",
-    "vmExtName": "dscExtension"
+    "vmExtensionName": "dscExtension",
+    "vmExtName": "dscExt"
   },
   "resources": [
     {
@@ -214,8 +214,8 @@
     "name": "[concat(parameters('vmName'),'/', variables('vmExtName'))]",
     "location": "[parameters('location')]",
     "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/extensions/', variables('vmExtensionName'))]"
-      ],
+        'Microsoft.Compute/virtualMachines/extensions/dscExtension'
+            ],
     "properties": {
         "publisher": "Microsoft.Compute",
         "type": "CustomScriptExtension",
