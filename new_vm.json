@@ -206,6 +206,29 @@
         },
         "protectedSettings": null
       }
+    },
+    {
+    "apiVersion": "2015-06-15",
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "name": "config-app",
+    "location": "[parameters('location')]",
+    "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+      ],
+    "properties": {
+        "publisher": "Microsoft.Compute",
+        "type": "CustomScriptExtension",
+        "typeHandlerVersion": "1.9",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+            "fileUris": [
+                "script location"
+            ]
+        },
+        "protectedSettings": {
+            "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File configure-music-app.ps1"
+        }
     }
+}
   ]
 }
