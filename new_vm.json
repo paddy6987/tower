@@ -222,11 +222,11 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
             "fileUris": [
-                "script location"
+                "https://raw.githubusercontent.com/paddy6987/tower/master/Createfile.ps1"
             ]
         },
         "protectedSettings": {
-            "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File configure-music-app.ps1"
+            "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File Createfile.ps1"
         }
     }
 }
