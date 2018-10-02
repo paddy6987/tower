@@ -191,9 +191,8 @@
     "apiVersion": "2015-05-01-preview",
     "location": "[parameters('location')]",
     "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'),'/extensions/dscExtension')]"
-              ],
+        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+    ],
     "properties": {
         "publisher": "Microsoft.Compute",
         "type": "CustomScriptExtension",
