@@ -209,14 +209,14 @@
       }
     },
     {
-    "apiVersion": "2015-06-15",
     "type": "Microsoft.Compute/virtualMachines/extensions",
     "name": "[concat(parameters('vmName'),'/', variables('vmExtName'))]",
+    "apiVersion": "2015-06-15",
     "location": "[parameters('location')]",
     "dependsOn": [
         "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'),'/', 'dscExtension')]"
-            ],
+        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'),'/extensions/dscExtension')]"
+              ],
     "properties": {
         "publisher": "Microsoft.Compute",
         "type": "CustomScriptExtension",
