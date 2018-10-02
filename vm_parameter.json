@@ -21,7 +21,7 @@
             "value": "Password123"
         },
         "modulesUrl": {
-            "value": "https://github.com/paddy6987/tower/blob/master/ContosoWebsite.ps1.zip"
+            "value": "https://github.com/paddy6987/tower/blob/master/Modules/ContosoWebsite.ps1.zip"
         },
         "configurationFunction": {
             "value": "ContosoWebsite.ps1\\ContosoWebsite"
