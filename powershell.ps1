@@ -126,10 +126,9 @@ function Add-JDAzureRMVMToDomain {
   
  # Calling function to connect to domain  
  Add-JDAzureRMVMToDomain
- Start-Sleep 360
- 
  Write-Host "Please wait.... your Machine:$winVmName is configuring for login"
- 
+ Start-Sleep 360
+   
  #  Providing access to user for remote login
  Set-AzureRmVMCustomScriptExtension -ResourceGroupName $ResourceGroupName `
                -VMName $winVmName -Name "myCustomScript" `
