@@ -1,212 +1,466 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "diskType": {
-      "type": "string",
-      "defaultValue": "Standard_LRS",
-      "allowedValues": [
-        "Standard_LRS",
-        "Premium_LRS"
-      ],
-      "metadata": {
-        "description": "Type of the Storage for disks"
-      }
-    },
-    "vmName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the VM"
-      }
-    },
-    "vmSize": {
-      "type": "string",
-      "defaultValue": "Standard_A2",
-      "metadata": {
-        "description": "Size of the VM"
-      }
-    },
-    "imageSKU": {
-      "type": "string",
-      "defaultValue": "2012-R2-Datacenter",
-      "allowedValues": [
-        "2008-R2-SP1",
-        "2012-Datacenter",
-        "2012-R2-Datacenter"
-      ],
-      "metadata": {
-        "description": "Image SKU"
-      }
-    },
-    "adminUsername": {
-      "type": "string",
-      "metadata": {
-        "description": "Admin username"
-      }
-    },
-    "adminPassword": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Admin password"
-      }
-    },
-    "modulesUrl": {
-      "type": "string",
-      "metadata": {
-        "description": "URL for the DSC configuration module. NOTE: Can be a Github url(raw) to the zip file"
-      }
-    },
-    "configurationFunction": {
-      "type": "string",
-      "defaultValue": "ContosoWebsite.ps1\\ContosoWebsite",
-      "metadata": {
-        "description": "DSC configuration function to call"
-      }
-    },
-    "location": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]",
-      "metadata": {
-        "description": "Location for all resources."
-      }
-    }
-  },
-  "variables": {
-    "virtualNetworkName": "dscVNET",
-    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
-    "vnetAddressPrefix": "10.0.0.0/16",
-    "subnet1Name": "dscSubnet-1",
-    "subnet1Prefix": "10.0.0.0/24",
-    "subnet1Ref": "[concat(variables('vnetID'),'/subnets/', variables('subnet1Name'))]",
-    "publicIPAddressType": "Dynamic",
-    "publicIPAddressName": "dscPubIP",
-    "nicName": "dscNIC",
-    "imagePublisher": "MicrosoftWindowsServer",
-    "imageOffer": "WindowsServer",
-    "vmExtensionName": "dscExtension",
-    "vmExtName": "dscExt"
-  },
-  "resources": [
-    {
-      "apiVersion": "2015-05-01-preview",
-      "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[variables('publicIPAddressName')]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "publicIPAllocationMethod": "[variables('publicIPAddressType')]"
-      }
-    },
-    {
-      "apiVersion": "2015-05-01-preview",
-      "type": "Microsoft.Network/virtualNetworks",
-      "name": "[variables('virtualNetworkName')]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[variables('vnetAddressPrefix')]"
-          ]
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "botEnv": {
+        "type": "string",
+        "defaultValue": "prod"
+      },
+        "botId": {
+            "type": "string"
         },
-        "subnets": [
-          {
-            "name": "[variables('subnet1Name')]",
+        "location": {
+            "type": "string"
+        },
+        "sku": {
+            "type": "string"
+        },
+        "kind": {
+            "type": "string"
+        },
+        "siteName": {
+            "type": "string"
+        },
+        "createNewStorage": {
+            "type": "bool"
+        },
+        "storageAccountName": {
+            "type": "string"
+        },
+        "storageAccountResourceId": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "appId": {
+            "type": "string",
+            "defaultValue": "1234"
+        },
+        "appSecret": {
+            "type": "string",
+            "defaultValue": "blank"
+        },
+        "azureWebJobsBotFrameworkDirectLineSecret": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "zipUrl": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "proactiveZipUrl": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "useAppInsights": {
+            "type": "bool"
+        },
+        "appInsightsLocation": {
+            "type": "string"
+        },
+        "serverFarmId": {
+            "type": "string"
+        },
+        "createServerFarm": {
+            "type": "bool"
+        },
+        "serverFarmLocation": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "serverFarmSku": {
+            "type": "object",
+            "defaultValue": {
+                "name": "S1",
+                "tier": "Standard",
+                "size": "S1",
+                "family": "S",
+                "capacity": 1
+            }
+        },
+        "endpoint": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "luisApiLocation": {
+            "type": "string",
+            "defaultValue": "Global"
+        },
+        "administratorLogin": {
+            "type": "string"
+        },
+        "administratorLoginPassword": {
+            "type": "securestring"
+        },
+        "collation": {
+            "type": "string"
+        },
+        "databaseName": {
+            "type": "string"
+        },
+        "tier": {
+            "type": "string"
+        },
+        "skuName": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "maxSizeBytes": {
+            "type": "int"
+        },
+        "serverName": {
+            "type": "string"
+        },
+        "sampleName": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "zoneRedundant": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "licenseType": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "enableATP": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "allowAzureIps": {
+            "type": "bool",
+            "defaultValue": true
+        }
+    },
+    "variables": {
+        "storageAccountType": "Standard_LRS",
+        "storageAccountId": "[if(or(parameters('createNewStorage'), equals('', parameters('storageAccountResourceId'))), resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), parameters('storageAccountResourceId'))]",
+        "serverFarmName": "[last(split(parameters('serverFarmId'), '/'))]",
+        "myWorkerSize": 0,
+        "proactiveFunctionName": "[concat(parameters('siteName'), '-function')]",
+        "insightsName": "[concat(parameters('botId'), substring(uniqueString(resourceGroup().id), 0, 6))]",
+        "config": {
+            "scratch": {
+                "stateEndpoint": "https://intercom-api-scratch.azurewebsites.net",
+                "azureWebJobsBotFrameworkDirectLineEndpoint": "https://directline.scratch.botframework.com/",
+                "blobStoreName": "icscratch",
+                "openIdMetadata": "https://intercom-api-ppe.azurewebsites.net/v1/.well-known/openidconfiguration"
+            },
+            "ppe": {
+                "stateEndpoint": "https://intercom-api-ppe.azurewebsites.net",
+                "azureWebJobsBotFrameworkDirectLineEndpoint": "https://directline.ppe.botframework.com/",
+                "blobStoreName": "intercomppe",
+                "openIdMetadata": "https://intercom-api-ppe.azurewebsites.net/v1/.well-known/openidconfiguration"
+            },
+            "prod": {
+                "stateEndpoint": "",
+                "azureWebJobsBotFrameworkDirectLineEndpoint": "https://directline.botframework.com/",
+                "blobStoreName": "connectorprod",
+                "openIdMetadata": ""
+            }
+        },
+        "botAppKinds": {
+            "function": "functionapp",
+            "sdk": "app",
+            "designer": "app",
+            "bot": ""
+        },
+        "botAppKind": "[variables('botAppKinds')[parameters('kind')]]",
+        "currentConfig": "[variables('config')[toLower(parameters('botEnv'))]]",
+        "siteHost": "[concat(parameters('siteName'), '.azurewebsites.net')]",
+        "botEndpointConfig": {
+            "bot": "[parameters('endpoint')]",
+            "sdk": "[concat('https://', variables('siteHost'), '/api/messages')]",
+            "designer": "[concat('https://', variables('siteHost'), '/api/messages')]",
+            "function": "[concat('https://', variables('siteHost'), '/api/messages?code=', 'NYI')]"
+        },
+        "botEndpoint": "[variables('botEndpointConfig')[parameters('kind')]]",
+        "luisApiName": "",
+        "luisApiResId": "[resourceId('Microsoft.CognitiveServices/accounts/', variables('luisApiName'))]"
+    },
+    "resources": [
+              {
+        "name": "[parameters('serverName')]",
+        "type": "Microsoft.Sql/servers",
+        "location": "[parameters('location')]",
+        "tags": {
+          "displayName": "SqlServer"
+        },
+        "apiVersion": "2014-04-01",
+        "properties": {
+          "administratorLogin": "[parameters('administratorLogin')]",
+          "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
+          "version": "12.0"
+        }
+    },
+        {
+        "name": "[parameters('databaseName')]",
+        "type": "Microsoft.Sql/servers/databases",
+        "location": "[parameters('location')]",
+        "tags": {
+          "displayName": "Database"
+        },
+        "apiVersion": "2014-04-01",
+        "dependsOn": [
+              "[parameters('serverName')]"
+            ],
             "properties": {
-              "addressPrefix": "[variables('subnet1Prefix')]"
+			"collation": "[parameters('collation')]",
+                        "maxSizeBytes": "[parameters('maxSizeBytes')]",
+                        "sampleName": "[parameters('sampleName')]",
+                        "zoneRedundant": "[parameters('zoneRedundant')]",
+                        "licenseType": "[parameters('licenseType')]"
             }
-          }
-        ]
-      }
-    },
-    {
-      "apiVersion": "2015-05-01-preview",
-      "type": "Microsoft.Network/networkInterfaces",
-      "name": "[variables('nicName')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
-        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
-      ],
-      "properties": {
-        "ipConfigurations": [
-          {
-            "name": "ipconfig1",
+        },
+        { 
+            "name": "[if(equals('', variables('luisApiName')), 'nosuch', variables('luisApiName'))]",
+            "apiVersion": "2017-04-18",
+            "condition": "[not(equals(variables('luisApiName'), ''))]",
+            "type": "Microsoft.CognitiveServices/accounts",
+            "location": "[parameters('luisApiLocation')]",
+            "sku": {
+                "name": "F0"
+            },
+            "kind": "LUIS",
+            "properties": {}
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "condition": "[parameters('createNewStorage')]",
+            "name": "[parameters('storageAccountName')]",
+            "apiVersion": "2015-05-01-preview",
+            "location": "[parameters('location')]",
             "properties": {
-              "privateIPAllocationMethod": "Dynamic",
-              "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]"
-              },
-              "subnet": {
-                "id": "[variables('subnet1Ref')]"
-              }
+                "accountType": "[variables('storageAccountType')]"
             }
-          }
-        ]
-      }
-    },
-    {
-      "apiVersion": "2017-03-30",
-      "type": "Microsoft.Compute/virtualMachines",
-      "name": "[parameters('vmName')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
-      ],
-      "properties": {
-        "hardwareProfile": {
-          "vmSize": "[parameters('vmSize')]"
         },
-        "osProfile": {
-          "computerName": "[parameters('vmName')]",
-          "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('adminPassword')]"
-        },
-        "storageProfile": {
-          "imageReference": {
-            "publisher": "[variables('imagePublisher')]",
-            "offer": "[variables('imageOffer')]",
-            "sku": "[parameters('imageSKU')]",
-            "version": "latest"
-          },
-          "osDisk": {
-            "name": "[concat(parameters('vmName'), '_OSDisk')]",
-            "caching": "ReadWrite",
-            "createOption": "FromImage",
-            "managedDisk": {
-              "storageAccountType": "[parameters('diskType')]"
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "condition": "[parameters('createServerFarm')]",
+            "name": "[variables('serverFarmName')]",
+            "apiVersion": "2016-09-01",
+            "location": "[parameters('serverFarmLocation')]",
+            "sku": "[parameters('serverFarmSku')]",
+            "properties": {
+                "name": "[variables('serverFarmName')]"
             }
-          }
         },
-        "networkProfile": {
-          "networkInterfaces": [
+        {
+            "name": "[variables('insightsName')]",
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "apiVersion": "2014-04-01",
+            "condition": "[parameters('useAppInsights')]",
+            "location": "[parameters('appInsightsLocation')]",
+            "tags": {
+                "[concat('hidden-link:', resourceId('Microsoft.BotService/botServices/', parameters('botId')))]": "Resource",
+                "[concat('hidden-link:', resourceId('Microsoft.Web/sites/', parameters('siteName')))]": "Resource"
+            },
+            "properties": {
+                "ApplicationId": "[parameters('botId')]"
+            }
+        },
+        {
+            "name": "[parameters('siteName')]",
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2015-08-01",
+            "condition": "[not(equals(parameters('zipUrl'), ''))]",
+            "location": "[parameters('location')]",
+            "kind": "[variables('botAppKind')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]"
+            ],
+              "properties": {
+                "name": "[parameters('siteName')]",
+                "serverFarmId": "[parameters('serverFarmId')]",
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "AzureWebJobsStorage",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',listkeys(variables('storageAccountId'), '2015-05-01-preview').key1,';')]"
+                        },
+                        {
+                            "name": "AzureWebJobsDashboard",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',listkeys(variables('storageAccountId'), '2015-05-01-preview').key1,';')]"
+                        },
+                        {
+                            "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                            "value": "6.9.1"
+                        },
+                        {
+                            "name": "BotEnv",
+                            "value": "[parameters('botEnv')]"
+                        },
+                        {
+                            "name": "BotId",
+                            "value": "[parameters('botId')]"
+                        },
+                        {
+                            "name": "MicrosoftAppId",
+                            "value": "[parameters('appId')]"
+                        },
+                        {
+                            "name": "MicrosoftAppPassword",
+                            "value": "[parameters('appSecret')]"
+                        },
+                        {
+                            "name": "BotStateEndpoint",
+                            "value": "[variables('currentConfig').stateEndpoint]"
+                        },
+                        {
+                            "name": "BotOpenIdMetadata",
+                            "value": "[variables('currentConfig').openIdMetadata]"
+                        },
+                        {
+                            "name": "UseTableStorageForConversationState",
+                            "value": "true"
+                        },
+                        {
+                            "name": "BotDevAppInsightsKey",
+                            "value": "[reference(resourceId('microsoft.insights/components/', variables('insightsName')), '2015-05-01').InstrumentationKey]"
+                        },
+                        {
+                            "name": "BotDevAppInsightsName",
+                            "value": "[variables('insightsName')]"
+                        },
+                        {
+                            "name": "BotDevAppInsightsAppId",
+                            "value": "[reference(resourceId('microsoft.insights/components/', variables('insightsName')), '2015-05-01').AppId]"
+                        },
+                        {
+                            "name": "QnAKnowledgebaseId",
+                            "value": ""
+                        },
+                        {
+                            "name": "QnAAuthKey",
+                            "value": ""
+                        },
+                        {
+                            "name": "QnAEndpointHostName",
+                            "value": ""
+                        }
+                    ],
+                    "cors": {
+                        "allowedOrigins": [
+                            "https://botservice.hosting.portal.azure.net",
+                            "https://hosting.onecloud.azure-test.net/"
+                        ]
+                    }
+                }
+            }
+        },
             {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
-            }
-          ]
-        }
-      }
-    },
-    {
-    "type": "Microsoft.Compute/virtualMachines/extensions",
-    "name": "[concat(parameters('vmName'),'/', variables('vmExtName'))]",
-    "apiVersion": "2015-05-01-preview",
-    "location": "[parameters('location')]",
-    "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
-    ],
-    "properties": {
-        "publisher": "Microsoft.Compute",
-        "type": "CustomScriptExtension",
-        "typeHandlerVersion": "1.9",
-        "autoUpgradeMinorVersion": true,
-        "settings": {
-            "fileUris": [
-                "https://cloudshellstoragecent867.blob.core.windows.net/new/Createfile.ps1"
-            ]
+                    "apiVersion": "2016-03-01",
+					"type": "config",
+					"name": "connectionstrings",
+					"dependsOn": [
+						"[parameters('siteName')]"
+					],
+					"properties": {
+						"DefaultConnection": {
+							"value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('databaseName'), ';User Id=', parameters('administratorLogin'), '@', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ';Password=', parameters('administratorLoginPassword'), ';')]",
+							"type": "SQLAzure"
+                        }		
+                    }
+                },       
+		    {
+                    "name": "MSDeploy",
+                    "type": "Extensions",
+                    "apiVersion": "2015-02-01",
+                    "condition": "[not(equals(parameters('zipUrl'), ''))]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Web/Sites/', parameters('siteName'))]"
+                    ],
+                    "properties": {
+                        "packageUri": "[parameters('zipUrl')]",
+                        "dbType": "None",
+                        "connectionString": "",
+                        "setParameters": {
+                            "IIS Web Application Name": "[parameters('siteName')]"
+                        }
+                    }
+            
         },
-        "protectedSettings": {
-            "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File Createfile.ps1"
+        {
+            "apiVersion": "2016-03-01",
+            "type": "Microsoft.Web/sites",
+            "condition": "[not(equals(parameters('proactiveZipUrl'), ''))]",
+            "name": "[variables('proactiveFunctionName')]",
+            "location": "[parameters('location')]",
+            "kind": "functionapp",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]"
+            ],
+            "properties": {
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "AzureWebJobsDashboard",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',listkeys(variables('storageAccountId'), '2015-05-01-preview').key1,';')]"
+                        },
+                        {
+                            "name": "AzureWebJobsStorage",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',listkeys(variables('storageAccountId'), '2015-05-01-preview').key1,';')]"
+                        },
+                        {
+                            "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',listkeys(variables('storageAccountId'), '2015-05-01-preview').key1,';')]"
+                        },
+                        {
+                            "name": "WEBSITE_CONTENTSHARE",
+                            "value": "[toLower(variables('proactiveFunctionName'))]"
+                        },
+                        {
+                            "name": "FUNCTIONS_EXTENSION_VERSION",
+                            "value": "~1"
+                        },
+                        {
+                            "name": "AzureWebJobsBotFrameworkDirectLineSecret",
+                            "value": "[parameters('azureWebJobsBotFrameworkDirectLineSecret')]"
+                        },
+                        {
+                            "name": "AzureWebJobsBotFrameworkDirectLineEndpoint",
+                            "value": "[variables('currentConfig').azureWebJobsBotFrameworkDirectLineEndpoint]"
+                        }
+                    ]
+                }
+            },
+            {
+                    "name": "MSDeploy",
+                    "type": "Extensions",
+                    "apiVersion": "2015-02-01",
+                    "condition": "[not(equals(parameters('proactiveZipUrl'), ''))]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Web/Sites/', variables('proactiveFunctionName'))]"
+                    ],
+                    "properties": {
+                        "packageUri": "[parameters('proactiveZipUrl')]"
+                    }
+             },
+        {
+            "apiVersion": "2017-12-01",
+            "type": "Microsoft.BotService/botServices",
+            "name": "[parameters('botId')]",
+            "location": "global",
+            "kind": "[parameters('kind')]",
+            "sku": {
+                "name": "[parameters('sku')]"
+            },
+            "properties": {
+                "name": "[parameters('botId')]",
+                "displayName": "[parameters('botId')]",
+                "endpoint": "[variables('botEndpoint')]",
+                "msaAppId": "[parameters('appId')]",
+                "developerAppInsightsApplicationId": "[variables('insightsName')]",
+                "developerAppInsightKey": "[reference(resourceId('microsoft.insights/components/', variables('insightsName')), '2015-05-01').InstrumentationKey]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]",
+                "[resourceId('Microsoft.Web/sites/', parameters('siteName'))]",
+                "MSDeploy",
+                "[resourceId('microsoft.insights/components/', variables('insightsName'))]"
+            ]
         }
-    }
-}
-  ]
+    ]
 }
